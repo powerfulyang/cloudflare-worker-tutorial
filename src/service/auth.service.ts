@@ -72,34 +72,6 @@ export class AuthService extends BaseService {
       })
     }
 
-    if ('email' in user && user.email) {
-      // use email to find user
-      const existingUser = await this.prisma.user.findFirst({
-        where: {
-          email: user.email,
-        },
-      })
-      // update oauth user id
-      if (existingUser) {
-        await this.prisma.user.update({
-          where: { id: existingUser.id },
-          data: { [`${type}Id`]: user.id },
-        })
-      }
-    }
-
-    const existingUser = await this.prisma.user.findFirst(
-      {
-        where: {
-          [`${type}Id`]: user.id,
-        },
-      },
-    )
-
-    if (existingUser) {
-      return existingUser
-    }
-
     let userData: Prisma.UserCreateInput
 
     switch (type) {
@@ -130,6 +102,37 @@ export class AuthService extends BaseService {
         }
         break
       }
+    }
+
+    if ('email' in user && user.email) {
+      // use email to find user
+      const existingUser = await this.prisma.user.findFirst({
+        where: {
+          email: user.email,
+        },
+      })
+      // update oauth user id
+      if (existingUser) {
+        await this.prisma.user.update({
+          where: { id: existingUser.id },
+          data: {
+            [`${type}Id`]: user.id,
+            ...userData,
+          },
+        })
+      }
+    }
+
+    const existingUser = await this.prisma.user.findFirst(
+      {
+        where: {
+          [`${type}Id`]: user.id,
+        },
+      },
+    )
+
+    if (existingUser) {
+      return existingUser
     }
 
     return this.prisma.user.create({
