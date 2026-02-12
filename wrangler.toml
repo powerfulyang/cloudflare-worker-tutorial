@@ -13,7 +13,7 @@ r2_buckets = [ { binding = "BUCKET", bucket_name = "littleeleven-dev", preview_b
 name = "api-littleeleven-com"
 vars = { ENVIRONMENT = "production", BUCKET_NAME = "littleeleven" }
 route = { pattern = "api.littleeleven.com", custom_domain = true }
-d1_databases = [ { binding = "DB", database_name = "littleeleven", database_id = "d1f330bd-9fb8-4552-897e-78d8426cbb70" }, ]
+d1_databases = [ { binding = "DB", database_name = "littleeleven", database_id = "c6ca0e33-ea58-48d3-b779-a21f9a063812" }, ]
 r2_buckets = [ { binding = "BUCKET", bucket_name = "littleeleven" } ]
 
 [triggers]
