@@ -10,7 +10,7 @@ d1_databases = [ { binding = "DB", database_name = "littleeleven-dev", database_
 r2_buckets = [ { binding = "BUCKET", bucket_name = "littleeleven-dev", preview_bucket_name = "littleeleven-dev" }, ]
 
 [env.production]
-name = "api_littleeleven_com"
+name = "api-littleeleven-com"
 vars = { ENVIRONMENT = "production", BUCKET_NAME = "littleeleven" }
 route = { pattern = "api.littleeleven.com", custom_domain = true }
 d1_databases = [ { binding = "DB", database_name = "littleeleven", database_id = "d1f330bd-9fb8-4552-897e-78d8426cbb70" }, ]
