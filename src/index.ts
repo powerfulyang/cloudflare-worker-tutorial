@@ -1,7 +1,9 @@
-import user_app from '@/routes/user'
-import app from '@/server'
+import { recordsApp } from '@/routes/records'
+import { userApp } from '@/routes/user'
+import { app } from '@/server'
 import '@/oauth-providers/oauth.middleware'
 
-app.route('/', user_app)
+app.route('/', recordsApp)
+app.route('/', userApp)
 
-export default app
+export { app }

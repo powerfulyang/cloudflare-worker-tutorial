@@ -1,8 +1,6 @@
 import { getAppInstance } from '@/core'
-import GetCurrentUser from '@/routes/user/current.get'
+import { getCurrentUserRoute } from '@/routes/user/current.get'
 
-const user_app = getAppInstance()
+export const userApp = getAppInstance()
 
-user_app.route('/user', GetCurrentUser)
-
-export default user_app
+userApp.route('/user', getCurrentUserRoute)

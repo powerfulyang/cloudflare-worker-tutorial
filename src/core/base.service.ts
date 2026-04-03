@@ -1,17 +1,24 @@
-import type { AppEnv } from '@/core'
-import { getContext } from 'hono/context-storage'
-import { getPrismaInstance } from '@/core/prisma'
+import type { User } from '#/prisma/client/edge'
+
+export interface ServiceDependencies {
+  env: Bindings
+  requestId?: string
+  user?: User
+}
 
 export class BaseService {
-  protected readonly prisma
-  protected readonly jwtSecret
-  protected readonly env
-  protected readonly ctx
+  constructor(protected readonly deps: ServiceDependencies) {
+  }
 
-  constructor() {
-    this.ctx = getContext<AppEnv>()
-    this.env = this.ctx.env
-    this.prisma = getPrismaInstance()
-    this.jwtSecret = this.env.JWT_SECRET
+  protected get env() {
+    return this.deps.env
+  }
+
+  protected get requestId() {
+    return this.deps.requestId
+  }
+
+  protected get user() {
+    return this.deps.user
   }
 }

@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import process from 'node:process'
 
 const runtimeDir = join(process.cwd(), 'prisma', 'client', 'runtime')
 const generatedClientPkgPath = join(process.cwd(), 'prisma', 'client', 'package.json')

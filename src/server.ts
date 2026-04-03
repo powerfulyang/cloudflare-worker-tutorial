@@ -1,7 +1,6 @@
 import { version } from '#/package.json'
 import { z } from '@hono/zod-openapi'
 import { every } from 'hono/combine'
-import { contextStorage } from 'hono/context-storage'
 import { cors } from 'hono/cors'
 import { HTTPException } from 'hono/http-exception'
 import { logger } from 'hono/logger'
@@ -9,13 +8,11 @@ import { requestId } from 'hono/request-id'
 import { secureHeaders } from 'hono/secure-headers'
 import { fromZodError } from 'zod-validation-error'
 import { getAppInstance } from '@/core'
+import { createRequestServices } from '@/core/request-services'
 import { isAllowedOrigin } from '@/utils'
 
-const app = getAppInstance().basePath('api')
+export const app = getAppInstance().basePath('api')
 
-app.use(contextStorage())
-
-// first
 app.use(
   '*',
   every(
@@ -36,17 +33,11 @@ app.use(
   ),
 )
 
-// second
-
-// service middleware
 app.use('*', async (ctx, next) => {
-  if (ctx.req.path.startsWith('/api/test/')) {
-    await next()
-    return
-  }
-
-  const { AuthService } = await import('@/service/auth.service')
-  ctx.set('authService', new AuthService())
+  ctx.set('services', createRequestServices({
+    env: ctx.env,
+    requestId: ctx.get('requestId'),
+  }))
   await next()
 })
 
@@ -54,7 +45,6 @@ app.get('/test/ping', (ctx) => {
   return ctx.json({ ok: true })
 })
 
-// Error handler
 app.onError((error, ctx) => {
   console.error(error)
   if (error instanceof z.ZodError) {
@@ -91,5 +81,3 @@ app.doc31('doc', {
     title: 'Eleven API',
   },
 })
-
-export default app

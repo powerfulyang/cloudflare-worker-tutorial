@@ -3,7 +3,7 @@ import { getAppInstance } from '@/core'
 import { JsonResponse } from '@/zodSchemas/JsonResponse'
 import { UserResult } from '@/zodSchemas/User'
 
-const GetCurrentUser = getAppInstance()
+export const getCurrentUserRoute = getAppInstance()
 
 const route = createRoute({
   path: '/current',
@@ -12,10 +12,8 @@ const route = createRoute({
   responses: JsonResponse(UserResult),
 })
 
-GetCurrentUser.openapi(route, async (ctx) => {
+getCurrentUserRoute.openapi(route, async (ctx) => {
   const user = ctx.get('user')
 
   return ctx.json(user)
 })
-
-export default GetCurrentUser
