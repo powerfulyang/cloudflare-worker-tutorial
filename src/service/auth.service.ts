@@ -2,10 +2,10 @@ import type { Prisma, User } from '#/prisma/client'
 import type { DiscordUser } from '@hono/oauth-providers/discord'
 import type { GitHubUser } from '@hono/oauth-providers/github'
 import type { GoogleUser } from '@hono/oauth-providers/google'
-import { BaseService } from '@/core/base.service'
 import { HTTPException } from 'hono/http-exception'
 import { sign, verify } from 'hono/jwt'
 import { v4 } from 'uuid'
+import { BaseService } from '@/core/base.service'
 
 export enum AuthType {
   GOOGLE = 'google',
@@ -28,7 +28,7 @@ export class AuthService extends BaseService {
 
   // jwt verify
   async verifyJwt(token: string, secret: string = this.jwtSecret) {
-    const { user } = await verify(token, secret)
+    const { user } = await verify(token, secret, 'HS256')
     return user as User
   }
 

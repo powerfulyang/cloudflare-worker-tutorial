@@ -12,6 +12,7 @@
 
     /* Language and Environment */
     "target": "ESNext",
+    "ignoreDeprecations": "6.0",
     /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     "lib": [
       "ESNext"
@@ -51,7 +52,7 @@
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
     "types": [
       "@cloudflare/workers-types",
-      "@cloudflare/vitest-pool-workers",
+      "@cloudflare/vitest-pool-workers/types",
       "vitest/globals"
     ],
     /* Enable importing .json files */

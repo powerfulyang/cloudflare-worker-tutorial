@@ -1,6 +1,6 @@
 import type { AppEnv } from '@/core'
-import { getPrismaInstance } from '@/core'
 import { getContext } from 'hono/context-storage'
+import { getPrismaInstance } from '@/core/prisma'
 
 export class BaseService {
   protected readonly prisma

@@ -1,12 +1,12 @@
 import type { CookieOptions } from 'hono/utils/cookie'
-import app from '@/server'
-import { AuthType } from '@/service/auth.service'
-import { isAllowedOrigin } from '@/utils'
 import { discordAuth } from '@hono/oauth-providers/discord'
 import { githubAuth } from '@hono/oauth-providers/github'
 import { googleAuth } from '@hono/oauth-providers/google'
 import { getCookie, setCookie } from 'hono/cookie'
 import { HTTPException } from 'hono/http-exception'
+import app from '@/server'
+import { AuthType } from '@/service/auth.service'
+import { isAllowedOrigin } from '@/utils'
 
 const COOKIE_NAME = 'token'
 const COOKIE_OPTIONS = {
@@ -20,7 +20,7 @@ const COOKIE_OPTIONS = {
 // 鉴权中间件
 app.use('*', async (ctx, next) => {
   // 跳过登录相关路由
-  if (ctx.req.path.startsWith('/api/auth/')) {
+  if (ctx.req.path.startsWith('/api/auth/') || ctx.req.path.startsWith('/api/test/')) {
     const _redirect = ctx.req.query('_redirect')
     if (_redirect) {
       // check 是不是白名单域名

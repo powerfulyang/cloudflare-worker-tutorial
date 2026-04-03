@@ -1,7 +1,7 @@
+import { createRoute } from '@hono/zod-openapi'
 import { getAppInstance } from '@/core'
 import { JsonResponse } from '@/zodSchemas/JsonResponse'
 import { UserResult } from '@/zodSchemas/User'
-import { createRoute } from '@hono/zod-openapi'
 
 const GetCurrentUser = getAppInstance()
 

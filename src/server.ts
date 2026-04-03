@@ -1,7 +1,4 @@
 import { version } from '#/package.json'
-import { getAppInstance } from '@/core'
-import { AuthService } from '@/service/auth.service'
-import { isAllowedOrigin } from '@/utils'
 import { z } from '@hono/zod-openapi'
 import { every } from 'hono/combine'
 import { contextStorage } from 'hono/context-storage'
@@ -11,6 +8,8 @@ import { logger } from 'hono/logger'
 import { requestId } from 'hono/request-id'
 import { secureHeaders } from 'hono/secure-headers'
 import { fromZodError } from 'zod-validation-error'
+import { getAppInstance } from '@/core'
+import { isAllowedOrigin } from '@/utils'
 
 const app = getAppInstance().basePath('api')
 
@@ -41,8 +40,18 @@ app.use(
 
 // service middleware
 app.use('*', async (ctx, next) => {
+  if (ctx.req.path.startsWith('/api/test/')) {
+    await next()
+    return
+  }
+
+  const { AuthService } = await import('@/service/auth.service')
   ctx.set('authService', new AuthService())
   await next()
+})
+
+app.get('/test/ping', (ctx) => {
+  return ctx.json({ ok: true })
 })
 
 // Error handler

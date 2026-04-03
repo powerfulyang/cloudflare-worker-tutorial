@@ -3,7 +3,6 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
   output          = "./client"
 }
 
@@ -33,7 +32,6 @@ generator zod {
 // - The remote version is managed by Cloudflare in the Cloud.
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
 }
 
 model User {
