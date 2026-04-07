@@ -1,5 +1,6 @@
 import { createRoute, z } from '@hono/zod-openapi'
 import { getAppInstance } from '@/core'
+import { getServices } from '@/core/request-services'
 import { JsonRequest } from '@/zodSchemas/JsonRequest'
 import { JsonResponse } from '@/zodSchemas/JsonResponse'
 
@@ -43,13 +44,13 @@ const postRecordRoute = createRoute({
 
 recordRoute.openapi(getRecordRoute, async (ctx) => {
   const { id } = RecordParamsSchema.parse(ctx.req.param())
-  const { recordService } = ctx.get('services')
+  const { recordService } = getServices(ctx)
   return ctx.json(await recordService.findById(id))
 })
 
 recordRoute.openapi(postRecordRoute, async (ctx) => {
   const { id } = RecordParamsSchema.parse(ctx.req.param())
   const { data } = RecordBodySchema.parse(await ctx.req.json())
-  const { recordService } = ctx.get('services')
+  const { recordService } = getServices(ctx)
   return ctx.json(await recordService.upsert(id, data))
 })

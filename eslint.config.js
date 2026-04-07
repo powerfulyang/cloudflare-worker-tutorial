@@ -4,6 +4,8 @@ export default antfu(
   {
     ignores: [
       // eslint ignore globs here
+      '**/*.md',
+      '*.md',
     ],
   },
   {

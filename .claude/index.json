@@ -1,0 +1,229 @@
+{
+  "timestamp": "2026-04-07T14:39:05+08:00",
+  "projectRoot": "C:\\Users\\power\\github-repos\\cloudflare-worker",
+  "projectName": "cloudflare-worker",
+  "projectType": "cloudflare-workers-api",
+  "language": "typescript",
+  "framework": "hono",
+  "coverage": {
+    "estimatedTotalFiles": 25,
+    "scannedFiles": 25,
+    "coveragePercentage": 100,
+    "modules": {
+      "src/core": {
+        "scanned": true,
+        "files": ["index.ts", "prisma.ts", "request-services.ts", "base.service.ts"],
+        "hasTests": false,
+        "hasInterface": true,
+        "hasDataModel": false
+      },
+      "src/routes": {
+        "scanned": true,
+        "files": ["records/index.ts", "records/record.ts", "user/index.ts", "user/current.get.ts"],
+        "hasTests": true,
+        "hasInterface": true,
+        "hasDataModel": false
+      },
+      "src/service": {
+        "scanned": true,
+        "files": ["auth.service.ts", "record.service.ts"],
+        "hasTests": false,
+        "hasInterface": false,
+        "hasDataModel": false
+      },
+      "src/repository": {
+        "scanned": true,
+        "files": ["user.repository.ts", "record.repository.ts"],
+        "hasTests": false,
+        "hasInterface": false,
+        "hasDataModel": true
+      },
+      "src/oauth-providers": {
+        "scanned": true,
+        "files": ["oauth.middleware.ts"],
+        "hasTests": false,
+        "hasInterface": true,
+        "hasDataModel": false
+      },
+      "src/zodSchemas": {
+        "scanned": true,
+        "files": ["User.ts", "JsonRequest.ts", "JsonResponse.ts", "Upload.ts"],
+        "hasTests": false,
+        "hasInterface": true,
+        "hasDataModel": false
+      },
+      "src/constants": {
+        "scanned": true,
+        "files": ["index.ts", "public-paths.ts"],
+        "hasTests": false,
+        "hasInterface": false,
+        "hasDataModel": false
+      },
+      "src/utils": {
+        "scanned": true,
+        "files": ["index.ts"],
+        "hasTests": false,
+        "hasInterface": false,
+        "hasDataModel": false
+      },
+      "prisma": {
+        "scanned": true,
+        "files": ["schema.prisma"],
+        "hasTests": false,
+        "hasInterface": false,
+        "hasDataModel": true
+      },
+      "tests": {
+        "scanned": true,
+        "files": ["hash.spec.ts", "e2e/test-endpoint.e2e.spec.ts"],
+        "hasTests": true,
+        "hasInterface": false,
+        "hasDataModel": false
+      },
+      "migrations": {
+        "scanned": true,
+        "files": ["prisma-generated.sql", "20260403_add_records_table.sql"],
+        "hasTests": false,
+        "hasInterface": false,
+        "hasDataModel": true
+      }
+    }
+  },
+  "modules": [
+    {
+      "path": "src/core",
+      "name": "core",
+      "description": "核心基础设施模块",
+      "language": "typescript",
+      "entryFiles": ["index.ts"],
+      "interfaceFiles": ["index.ts", "request-services.ts"],
+      "testFiles": [],
+      "importantFiles": ["prisma.ts", "base.service.ts", "request-services.ts"]
+    },
+    {
+      "path": "src/routes",
+      "name": "routes",
+      "description": "API路由定义模块",
+      "language": "typescript",
+      "entryFiles": ["records/index.ts", "user/index.ts"],
+      "interfaceFiles": ["records/record.ts", "user/current.get.ts"],
+      "testFiles": [],
+      "importantFiles": ["records/record.ts", "user/current.get.ts"]
+    },
+    {
+      "path": "src/service",
+      "name": "service",
+      "description": "业务逻辑服务层",
+      "language": "typescript",
+      "entryFiles": [],
+      "interfaceFiles": [],
+      "testFiles": [],
+      "importantFiles": ["auth.service.ts", "record.service.ts"]
+    },
+    {
+      "path": "src/repository",
+      "name": "repository",
+      "description": "数据访问仓库层",
+      "language": "typescript",
+      "entryFiles": [],
+      "interfaceFiles": [],
+      "testFiles": [],
+      "importantFiles": ["user.repository.ts", "record.repository.ts"]
+    },
+    {
+      "path": "src/oauth-providers",
+      "name": "oauth-providers",
+      "description": "OAuth认证中间件",
+      "language": "typescript",
+      "entryFiles": ["oauth.middleware.ts"],
+      "interfaceFiles": ["oauth.middleware.ts"],
+      "testFiles": [],
+      "importantFiles": ["oauth.middleware.ts"]
+    },
+    {
+      "path": "prisma",
+      "name": "prisma",
+      "description": "数据模型与Prisma配置",
+      "language": "prisma",
+      "entryFiles": ["schema.prisma"],
+      "interfaceFiles": [],
+      "testFiles": [],
+      "importantFiles": ["schema.prisma"]
+    },
+    {
+      "path": "tests",
+      "name": "tests",
+      "description": "测试文件目录",
+      "language": "typescript",
+      "entryFiles": [],
+      "interfaceFiles": [],
+      "testFiles": ["hash.spec.ts", "e2e/test-endpoint.e2e.spec.ts"],
+      "importantFiles": ["hash.spec.ts", "e2e/test-endpoint.e2e.spec.ts"]
+    }
+  ],
+  "entryPoints": {
+    "main": "src/index.ts",
+    "server": "src/server.ts"
+  },
+  "configFiles": [
+    "wrangler.toml",
+    "tsconfig.json",
+    "package.json",
+    "vitest.config.ts",
+    ".gitignore",
+    ".editorconfig",
+    ".prettierrc"
+  ],
+  "dataModels": {
+    "prisma": {
+      "file": "prisma/schema.prisma",
+      "models": ["User", "Record"]
+    },
+    "migrations": [
+      "migrations/prisma-generated.sql",
+      "migrations/20260403_add_records_table.sql"
+    ]
+  },
+  "ignoreRules": {
+    "source": ".gitignore",
+    "patterns": [
+      ".idea",
+      "node_modules",
+      ".wrangler",
+      "openapi.json",
+      ".dev.vars",
+      "remote.sql",
+      "prisma/client",
+      "prisma/zod"
+    ],
+    "defaultPatterns": [
+      "node_modules/**",
+      ".git/**",
+      ".github/**",
+      "dist/**",
+      "build/**",
+      ".next/**",
+      "__pycache__/**",
+      "*.lock",
+      "*.log",
+      "*.bin",
+      "*.pdf",
+      "*.png",
+      "*.jpg",
+      "*.jpeg",
+      "*.gif",
+      "*.mp4",
+      "*.zip",
+      "*.tar",
+      "*.gz"
+    ]
+  },
+  "gaps": {
+    "missingTests": ["src/core", "src/service", "src/repository", "src/oauth-providers"],
+    "missingInterfaceDocs": false,
+    "missingDataModelDocs": false,
+    "recommendations": []
+  },
+  "truncated": false,
+  "nextSteps": []
+}

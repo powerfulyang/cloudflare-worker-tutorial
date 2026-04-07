@@ -6,3 +6,4 @@ openapi.json
 remote.sql
 prisma/client
 prisma/zod
+build

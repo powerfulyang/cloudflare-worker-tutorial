@@ -11,3 +11,5 @@ export function isAllowedOrigin(origin: string) {
   //   || origin === 'https://littleeleven.com'
   //   || origin === 'https://powerfulyang.com'
 }
+
+export * from './logger'

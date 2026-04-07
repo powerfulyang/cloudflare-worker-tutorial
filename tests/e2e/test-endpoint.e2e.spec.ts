@@ -1,6 +1,6 @@
 import { env } from 'cloudflare:workers'
 import { expect } from 'vitest'
-import { app } from '@/index'
+import app from '@/index'
 
 describe('records endpoint', () => {
   it('creates and reads a record by uuid path', async () => {
